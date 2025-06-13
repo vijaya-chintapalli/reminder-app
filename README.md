@@ -27,6 +27,8 @@ _(Replace with your actual GitHub Pages link)_
 
 ## 📦 How to Use Locally
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/yourusername/reminder-app.git
+📦 How to Use Locally  
+Clone the repo:  
+```bash
+git clone https://github.com/vijaya-chintapalli/reminder-app.git
+
