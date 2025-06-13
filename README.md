@@ -10,8 +10,8 @@ This app runs directly in the browser using the `setTimeout()` function to simul
 
 ## 🚀 Live Demo
 
-👉 [Click here to try it](https://yourusername.github.io/reminder-app/)  
-_(Replace with your actual GitHub Pages link)_
+👉 [Click here to try it] https://vijaya-chintapalli.github.io/reminder-app/ 
+
 
 ## 📁 Features
 
