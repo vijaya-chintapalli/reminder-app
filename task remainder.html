@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reminder App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .btn {
+      margin-left: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: red;
+      color: white;
+      border: none;
+    }
+    .edit-btn {
+      background-color: orange;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reminder App</h1>
+  <input type="text" id="task" placeholder="Enter your reminder">
+  <input type="datetime-local" id="reminderTime">
+  <button onclick="addReminder()">Add Reminder</button>
+
+  <ul id="reminderList"></ul>
+
+  <script>
+    function addReminder(taskText = '', reminderTime = '') {
+      const taskInput = document.getElementById('task');
+      const timeInput = document.getElementById('reminderTime');
+
+      const task = taskText || taskInput.value;
+      const time = new Date(reminderTime || timeInput.value);
+      const now = new Date();
+
+      if (!task || isNaN(time.getTime())) {
+        alert("Please enter both task and a valid time.");
+        return;
+      }
+
+      const li = document.createElement('li');
+      const span = document.createElement('span');
+      span.textContent = `${task} at ${time.toLocaleString()}`;
+      li.appendChild(span);
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "btn delete-btn";
+      deleteBtn.onclick = () => li.remove();
+
+      const editBtn = document.createElement('button');
+      editBtn.textContent = "Modify";
+      editBtn.className = "btn edit-btn";
+      editBtn.onclick = () => {
+        taskInput.value = task;
+        timeInput.value = new Date(time).toISOString().slice(0, 16);
+        li.remove(); // Remove old entry, let user re-add with changes
+      };
+
+      li.appendChild(editBtn);
+      li.appendChild(deleteBtn);
+      document.getElementById('reminderList').appendChild(li);
+
+      const timeout = time.getTime() - now.getTime();
+      if (timeout > 0) {
+        setTimeout(() => {
+          alert(`⏰ Reminder: ${task}`);
+        }, timeout);
+      }
+
+      taskInput.value = '';
+      timeInput.value = '';
+    }
+  </script>
+</body>
+</html>
